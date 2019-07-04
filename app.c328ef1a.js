@@ -49217,7 +49217,7 @@ function (_React$Component) {
         background: _rivia.default,
         menu: _mock.default,
         contentHeader: '<h4>Geralt of</h4><h2>Rivia</h2>',
-        contentBody: '<p>School of wolf</p>',
+        contentBody: '<p>School of the Wolf</p>',
         contentFooter: '<h2>Witcher</h2>'
       })));
     }
