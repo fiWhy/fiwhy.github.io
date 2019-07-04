@@ -29653,11 +29653,11 @@ function (_React$Component) {
           y: _this.posY(angle),
           angle: angle,
           progress: progress
+        }, function () {
+          if (progress === 1 && after) {
+            after();
+          }
         });
-
-        if (progress === 1 && after) {
-          after();
-        }
       });
     };
 
@@ -29668,20 +29668,22 @@ function (_React$Component) {
           currentAngle = _this$state.angle,
           currentProgress = _this$state.progress;
       cancelAnimationFrame(_this.frame);
-      _this.frame = (0, _animations.animate)(_animations.easeInOut)(1000, 1 - currentProgress)(function (progress, frame) {
-        _this.frame = frame;
-        var angle = progress * currentAngle;
+      before.then(function () {
+        _this.frame = (0, _animations.animate)(_animations.easeInOut)(1000, 1 - currentProgress)(function (progress, frame) {
+          _this.frame = frame;
+          var angle = progress * currentAngle;
 
-        _this.setState({
-          x: _this.posX(currentAngle - currentAngle * progress),
-          y: _this.posY(currentAngle - currentAngle * progress),
-          angle: angle,
-          progress: progress
+          _this.setState({
+            x: _this.posX(currentAngle - currentAngle * progress),
+            y: _this.posY(currentAngle - currentAngle * progress),
+            angle: angle,
+            progress: progress
+          }, function () {
+            if (progress === 1 && after) {
+              after();
+            }
+          });
         });
-
-        if (progress === 1 && after) {
-          after();
-        }
       });
     };
 
@@ -29725,7 +29727,9 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var el = this.props.el;
+      var _this$props = this.props,
+          el = _this$props.el,
+          opened = _this$props.opened;
       var _this$state2 = this.state,
           x = _this$state2.x,
           y = _this$state2.y,
@@ -29739,7 +29743,7 @@ function (_React$Component) {
       }, _react.default.createElement("div", {
         className: "menu__item__header"
       }, _react.default.createElement(_text.default, {
-        expand: expand,
+        expand: expand && opened,
         content: el.title
       })), _react.default.createElement("div", {
         className: "menu__item__body"
@@ -48977,7 +48981,7 @@ function (_React$Component) {
       _this.setState({
         opened: !_this.state.opened
       });
-    }, 500);
+    }, 800);
     return _this;
   }
 
@@ -49255,7 +49259,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60722" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64627" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
